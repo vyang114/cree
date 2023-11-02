@@ -440,7 +440,7 @@ const Vocabulary = () => {
 
     return (
         < div >
-            <h1>Vocabulary</h1>
+            {/* <h1>Vocabulary</h1> */}
             {/* <select id="cat" value={category} onChange={handleFilterInput}>
                 <option value="fruit">Fruit</option>
                 <option value="vegetable">Vegetable</option> 

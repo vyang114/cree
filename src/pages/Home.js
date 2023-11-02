@@ -2,10 +2,12 @@ import React from 'react';
 import { Link, Outlet } from "react-router-dom";
 import AudioRecorderComponent from '../AudioRecorder';
 
+import '../styles/home.css'
+
 const Home = () => {
 	return (
 		<div>
-			<h1>Cree Revitalization</h1>
+			<h1 className='home-title'>Cree Revitalization</h1>
 {/* 
 			<div className='container'>
 				<div className='textbox-container'>
