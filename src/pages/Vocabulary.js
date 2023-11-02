@@ -414,6 +414,7 @@ const Vocabulary = () => {
 
     const playAudio = (item) => {
         let audio = new Audio(`/assets/sounds/${item}.wav`)
+        audio.crossOrigin = "anonymous";
         audio.play()
         console.log(`/assets/sounds/${item}.wav`, audio);
     }
