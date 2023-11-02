@@ -413,15 +413,15 @@ const Vocabulary = () => {
     const [category, setCategory] = useState('fruit');
 
     const playAudio = (item) => {
-        let audio = new Audio("../assets/sounds/" + item + ".wav")
+        let audio = new Audio(`/assets/sounds/${item}.wav`)
         audio.play()
-        // console.log(item);
+        console.log(`/assets/sounds/${item}.wav`, audio);
     }
 
     let element = vocab.map(function(object) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
         return (
             <div className='vocab-item'>
-                <img className = 'vocab-item-image' src={`../assets/flashcards/${object.english}.jpg`} onClick={(e) => playAudio(`${object.english}`)}></img>
+                <img className = 'vocab-item-image' src={`/assets/flashcards/${object.english}.jpg`} onClick={(e) => playAudio(`${object.english}`)}></img>
 
                 <div className='text-audio'>
                     <div className="vocab-item-text">
