@@ -413,10 +413,15 @@ const Vocabulary = () => {
     const [category, setCategory] = useState('fruit');
 
     const playAudio = (item) => {
-        let audio = new Audio(`/assets/sounds/${item}.wav`)
+        let audio = new Audio(`../assets/sounds/${item}.wav`)
+        // let el = <audio src="./sample.mp3" id="my-audio"></audio>
+
+        // const audio = document.getElementById('my-audio')
+        // audio.play()
+        
         audio.crossOrigin = "anonymous";
         audio.play()
-        console.log(`/assets/sounds/${item}.wav`, audio);
+        console.log(`../assets/sounds/${item}.wav`, audio);
     }
 
     let element = vocab.map(function(object) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
