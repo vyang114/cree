@@ -413,7 +413,7 @@ const Vocabulary = () => {
     const [category, setCategory] = useState('fruit');
 
     const playAudio = (item) => {
-        let audio = new Audio("/assets/sounds/" + item + ".wav")
+        let audio = new Audio("../assets/sounds/" + item + ".wav")
         audio.play()
         // console.log(item);
     }
