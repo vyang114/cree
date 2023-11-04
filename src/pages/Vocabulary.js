@@ -1,7 +1,8 @@
 import React from 'react';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/fontawesome-free-solid'
+import soundfile from '../assets/sounds/apple.wav'
 
 import '../styles/vocabulary.css'
 
@@ -404,24 +405,16 @@ const vocab = [
     },
 ]
 
-const options = [
-    '', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'
-  ];
-
 const Vocabulary = () => {
 
     const [category, setCategory] = useState('fruit');
 
     const playAudio = (item) => {
-        let audio = new Audio(`../assets/sounds/${item}.wav`)
-        // let el = <audio src="./sample.mp3" id="my-audio"></audio>
-
-        // const audio = document.getElementById('my-audio')
-        // audio.play()
-        
-        audio.crossOrigin = "anonymous";
+        let audio = new Audio(`/assets/sounds/${item}.wav`)
+        // let audio = new Audio('https://drive.google.com/file/d/1vDgM6Ps45Ppr5-1eS5pFYMYrCRtZJHf_/view?usp=drive_link');
+        // audio.crossOrigin = "anonymous";
         audio.play()
-        console.log(`../assets/sounds/${item}.wav`, audio);
+        console.log(`/assets/sounds/${item}.wav`, audio);
     }
 
     let element = vocab.map(function(object) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
@@ -444,14 +437,10 @@ const Vocabulary = () => {
         );
       })
 
+    
     return (
         < div >
             {/* <h1>Vocabulary</h1> */}
-            {/* <select id="cat" value={category} onChange={handleFilterInput}>
-                <option value="fruit">Fruit</option>
-                <option value="vegetable">Vegetable</option> 
-            </select>  */}
-            {/* <button onClick={start}>Play</button> */}
             <div className="vocab-container">
                 {element}
             </div>

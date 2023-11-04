@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Header from "./pages/Header";
 import NavBar from "./pages/NavBar";
 import Game from './GameIndex';
+import Category from './pages/Category';
 import Vocabulary from './pages/Vocabulary';
 import './styles/App.css';
 
@@ -103,6 +104,7 @@ function App() {
       <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />
           <Route path="game" element={<Game />} />
+          <Route path="category" element={<Category />} />
           <Route path="vocabulary" element={<Vocabulary />} />
         </Route>
           

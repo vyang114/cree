@@ -53,19 +53,19 @@ textarea {
   padding: 0.6em;
 }
 
-button {
+.my-button {
   padding: 0.6em 1.2em;
   cursor: pointer;
   font-weight: 500;
 }
 
-button[disabled] {
+.my-button[disabled] {
   cursor: not-allowed;
 }
 
-select,
-textarea,
-button {
+.my-select,
+.my-textarea,
+.my-button {
   border-radius: 8px;
   border: 1px solid transparent;
   font-size: 1em;
@@ -74,17 +74,17 @@ button {
   transition: border-color 0.25s;
 }
 
-select:hover,
-textarea:hover,
-button:not([disabled]):hover {
-  border-color: #646cff;
+.my-select:hover,
+.my-textarea:hover,
+.my-button:not([disabled]):hover {
+  border-color: #f9f9f9;
 }
 
-select:focus,
-select:focus-visible,
-textarea:focus,
-textarea:focus-visible,
-button:focus,
-button:focus-visible {
+.my-select:focus,
+.my-select:focus-visible,
+.my-textarea:focus,
+.my-textarea:focus-visible,
+.my-button:focus,
+.my-button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }

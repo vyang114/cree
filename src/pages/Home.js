@@ -1,29 +1,31 @@
 import React from 'react';
-import { Link, Outlet } from "react-router-dom";
+import { Slide, Zoom } from 'react-slideshow-image';
+import SimpleImageSlider from "react-simple-image-slider";
+import 'react-slideshow-image/dist/styles.css';
 import AudioRecorderComponent from '../AudioRecorder';
 
 import '../styles/home.css'
 
+const images = [
+	'MedcineWheel2.jpg',
+	'Rockalign.jpg',
+	'logo512.png',
+  ];
+
 const Home = () => {
 	return (
 		<div>
-			<h1 className='home-title'>Cree Revitalization</h1>
-{/* 
-			<div className='container'>
-				<div className='textbox-container'>
-				<Link to="/game">
-					<button variant="outlined">
-						ChatBot
-					</button>
-				</Link>
-				
-				<Link to="/vocabulary">
-					<button variant="outlined">
-						Vocabulary
-					</button>
-				</Link>
-				</div>
-			</div> */}
+			{/* <h1 className='home-title'>Cree Revitalization</h1> */}
+			<SimpleImageSlider
+            width={"100%"}
+            height={"100%"}
+            images={images}
+            showNavs={true}
+			autoPlay={true}
+			slideDuration={0.7}
+			autoPlayDelay={2.5}
+			
+         />
 		</div>
 	);
 };

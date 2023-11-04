@@ -1,6 +1,6 @@
-/* select,
-textarea,
-button {
+.vocab-select,
+.vocab-textarea,
+.vocab-button {
   border-radius: 8px;
   border: 1px solid transparent;
   font-size: 1em;
@@ -10,12 +10,12 @@ button {
   transition: border-color 0.25s;
 }
 
-select:hover,
-textarea:hover,
-button:not([disabled]):hover {
+.vocab-select:hover,
+.vocab-textarea:hover,
+.vocab-button:not([disabled]):hover {
     background-color: #3a5d7d;
     border-color: #3a5d7d;
-} */
+}
 
 .vocab-container{
     display: flex;
