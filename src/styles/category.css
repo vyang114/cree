@@ -43,7 +43,6 @@ button:not([disabled]):hover {
 .category-button:hover {
     background-color: #efefef !important;
     transition: 0.35s;
-    
 }
 
 .category-item-text{

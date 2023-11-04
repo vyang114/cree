@@ -1,6 +1,5 @@
 .vocab-select,
-.vocab-textarea,
-.vocab-button {
+.vocab-textarea{
   border-radius: 8px;
   border: 1px solid transparent;
   font-size: 1em;
@@ -63,3 +62,12 @@
 .faPlayCircle:hover {
     color: #5585b0;
 }
+
+.btn {
+    border: none; /* Remove borders */
+    color: black; /* White text */
+    margin-left: 10px;
+    font-size: 20px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+  

@@ -2,6 +2,8 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/fontawesome-free-solid'
+import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import Category from './Category';
 import soundfile from '../assets/sounds/apple.wav'
 
 import '../styles/vocabulary.css'
@@ -78,336 +80,336 @@ const vocab = [
         audio: "apple.wav",
         english: "apple",
         cree: "kaspimin",
-        category: "fruit",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "apples.wav",
         english: "apples",
         cree: "kaspimina",
-        category: "fruit",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "orange.wav",  
         english: "orange",
         cree: "osawimin",
-        category: "fruit",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "oranges.wav",  
         english: "oranges",
         cree: "osawimina",
-        category: "fruit",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "watermelon.wav",  
         english: "watermelon",
         cree: "nipiwimin",
-        category: "fruit",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "watermelons.wav",  
         english: "watermelons",
         cree: "nipiwimina",
-        category: "fruit",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "pear.wav",  
         english: "pear",
         cree: "cipomin",
-        category: "fruit",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "pears.wav",  
         english: "pears",
         cree: "cipomina",
-        category: "fruit",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "peach.wav",  
         english: "peach",
         cree: "mithawimin",
-        category: "fruit",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "peaches.wav",  
         english: "peaches",
         cree: "mithawimina",
-        category: "fruit",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "carrot.wav",  
         english: "carrot",
         cree: "oskatask",
-        category: "vegetable",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "carrots.wav",  
         english: "carrots",
         cree: "oskataskwa",
-        category: "vegetable",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "onion.wav",  
         english: "onion",
         cree: "wihcikaskosiy",
-        category: "vegetable",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "onions.wav",  
         english: "onions",
         cree: "wihcikaskosiya",
-        category: "vegetable",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "potato.wav",  
         english: "potato",
         cree: "askipwa",
-        category: "vegetable",
-        type: "singular"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "potatoes.wav",  
         english: "potatoes",
         cree: "askipwawa",
-        category: "vegetable",
-        type: "plural"
+        category: "Fruits & Vegetables",
+        
     },
     {
         audio: "bread.wav",  
         english: "bread",
         cree: "pahkwísikan",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "butter.wav",  
         english: "butter",
         cree: "osawipimiy",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "cheese.wav",  
         english: "cheese",
         cree: "tohtosapohkan",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "egg.wav",  
         english: "egg",
         cree: "wawi",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "ice cream.wav",  
         english: "ice cream",
         cree: "ka tahkak",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "jello.wav",  
         english: "jello",
         cree: "astohcikan",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "juice.wav",  
         english: "juice",
         cree: "minisapoya",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "milk.wav",  
         english: "milk",
         cree: "tohtosapwiy",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "pepper.wav",  
         english: "pepper",
         cree: "pípaw",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "rice.wav",  
         english: "rice",
         cree: "wapihikominak",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "salt.wav",  
         english: "salt",
         cree: "siwitakan",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "soup.wav",  
         english: "soup",
         cree: "micimapoy",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "sugar.wav",  
         english: "sugar",
         cree: "siwinikan",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "tea.wav",  
         english: "tea",
         cree: "maskihkiwapwiy",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "wine.wav",  
         english: "wine",
         cree: "sominapoy",
-        category: "food",
-        type: "singular"
+        category: "Food",
+        
     },
     {
         audio: "morning.wav",  
         english: "morning",
         cree: "kikisipayaw",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "in the morning.wav",  
         english: "in the morning",
         cree: "kíkisipayaki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "night.wav",  
         english: "night",
         cree: "tipiskaw",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "tonight.wav",  
         english: "tonight",
         cree: "tipisikaki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "last evening.wav",  
         english: "last evening",
         cree: "otakosihk",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "last night.wav",  
         english: "last night",
         cree: "tipiskohk",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "later tonight.wav",  
         english: "later tonight",
         cree: "otakosiki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "tomorrow.wav",  
         english: "tomorrow",
         cree: "wapahki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "tomorrow morning.wav",  
         english: "tomorrow morning",
         cree: "wapahki kikisípayaki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "day after tomorrow.wav",  
         english: "day after tomorrow",
         cree: "awasiwahpahki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "noon.wav",  
         english: "noon",
         cree: "apihtáwi kisikaw",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "at noon.wav",  
         english: "at noon",
         cree: "apihtaaw wikisikaawki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "midnight.wav",  
         english: "midnight",
         cree: "apihtatipiskaw",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "at midnight.wav",  
         english: "at midnight",
         cree: "apihtatipiskaki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "past midnight.wav",  
         english: "past midnight",
         cree: "poni Apihtatipiskaaw",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
     {
         audio: "after midnight.wav",  
         english: "after midnight",
         cree: "poni Apihtatipiskaaki",
-        category: "time",
-        type: ""
+        category: "Time",
+        
     },
 ]
 
-const Vocabulary = () => {
+const Vocabulary = ({ category }) => {
 
-    const [category, setCategory] = useState('fruit');
+    const [goBack, setGoBack] = useState(false);
 
     const playAudio = (item) => {
         let audio = new Audio(`/assets/sounds/${item}.wav`)
@@ -417,7 +419,9 @@ const Vocabulary = () => {
         console.log(`/assets/sounds/${item}.wav`, audio);
     }
 
-    let element = vocab.map(function(object) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
+    const filteredVocab = vocab.filter(obj => obj.category.includes(category)).map(obj => ({"cree":obj.cree, "english":obj.english}));
+
+    let element = filteredVocab.map(function(object) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
         return (
             <div className='vocab-item'>
                 <img className = 'vocab-item-image' src={`/assets/flashcards/${object.english}.jpg`} onClick={(e) => playAudio(`${object.english}`)}></img>
@@ -437,13 +441,26 @@ const Vocabulary = () => {
         );
       })
 
+    const handleGoBack = () =>{
+        setGoBack(true);
+    }
     
     return (
         < div >
             {/* <h1>Vocabulary</h1> */}
-            <div className="vocab-container">
-                {element}
-            </div>
+            {
+                goBack 
+                ? <Category /> 
+                : 
+                <div>
+                    <button type="button" className='btn shadow-none' onClick={handleGoBack}><i class="fa fa-chevron-left"></i></button>
+                    <div className="vocab-container">
+                        {element}
+                    </div>
+                </div>
+            }
+
+            
         </div >
     );
 };

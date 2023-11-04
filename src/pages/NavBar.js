@@ -23,11 +23,11 @@ const NavBar = () => {
               Category
             </NavLink>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink activeclassname="active" className="nav-link" to="/vocabulary">
               Vocabulary
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
       </div>
