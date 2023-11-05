@@ -14,6 +14,11 @@ const NavBar = () => {
       <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
+            <NavLink activeclassname="active" className="nav-link" to="/learn">
+              Learn
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink activeclassname="active" className="nav-link" to="/game">
             Game
             </NavLink>
@@ -23,11 +28,6 @@ const NavBar = () => {
               Category
             </NavLink>
           </li>
-          {/* <li className="nav-item">
-            <NavLink activeclassname="active" className="nav-link" to="/vocabulary">
-              Vocabulary
-            </NavLink>
-          </li> */}
         </ul>
       </div>
       </div>

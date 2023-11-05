@@ -6,6 +6,7 @@ import Progress from './Progress';
 import Home from './pages/Home';
 import Header from "./pages/Header";
 import NavBar from "./pages/NavBar";
+import Learn from './pages/Learn';
 import Game from './GameIndex';
 import Category from './pages/Category';
 import Vocabulary from './pages/Vocabulary';
@@ -103,9 +104,10 @@ function App() {
       <Routes>
       <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />
+          <Route path="learn" element={<Learn />} />
           <Route path="game" element={<Game />} />
           <Route path="category" element={<Category />} />
-          <Route path="vocabulary" element={<Vocabulary />} />
+          {/* <Route path="vocabulary" element={<Vocabulary />} /> */}
         </Route>
           
       </Routes>

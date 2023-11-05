@@ -1,61 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCarrot, faCircleDollarToSlot, faClock, faComments, faHandshake, faHome, faIceCream, faPaw, faPersonRunning, faTrain } from '@fortawesome/free-solid-svg-icons'
 import Vocabulary from "./Vocabulary";
+import { categories } from "./Utils";
 import AudioRecorderComponent from '../AudioRecorder';
 
 import '../styles/category.css'
-
-const categories = [
-    {
-        category: "Greetings",
-        icon: faHandshake,
-    },
-    {
-        category: "Action Verbs",
-        icon: faPersonRunning,
-    },
-    {
-        category: "Phrases",
-        icon: faComments,
-    },
-    {
-        category: "Fruits & Vegetables",
-        icon: faCarrot,
-    },
-    {
-        category: "Food",
-        icon: faIceCream,
-    },
-    {
-        category: "Places & Transportation",
-        icon: faTrain,
-    },
-    {
-        category: "Home",
-        icon: faHome,
-    },
-    {
-        category: "Animals",
-        icon: faPaw,
-    },
-    {
-        category: "Time",
-        icon: faClock,
-    },
-    // {
-    //     category: "Time",
-    //     icon: "Intermediate",
-    // },
-    {
-        category: "Money",
-        icon: faCircleDollarToSlot,
-    },
-    // {
-    //     category: "Money",
-    //     icon: "Intermediate",
-    // },
-]
 
 const colours = ["#EDAA6C", "#ea7f3d", "#D83E27", "#193963", "#1F6E8E", "#2C8B98", "#82A8A0", "#bda5b7", "#c2b4a8", "#6a6a6a"];
 
