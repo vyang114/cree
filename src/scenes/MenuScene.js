@@ -63,7 +63,7 @@ export default class MenuScene extends Phaser.Scene {
         // Set up a click event for the start button
         startButton.on('pointerdown', function() {
             // Start the game scene (replace 'GameScene' with your actual game scene key)
-            this.scene.start('MoneyGameScene');
+            this.scene.start('FruitGameScene');
 
         }, this);
 

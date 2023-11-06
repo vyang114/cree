@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/fontawesome-free-solid'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import Category from './Category';
-import { vocab } from './Utils';
+import { vocab, playAudio } from './Utils';
 import soundfile from '../assets/sounds/apple.wav'
 
 import '../styles/vocabulary.css'
@@ -80,20 +80,19 @@ const Vocabulary = ({ category }) => {
 
     const [goBack, setGoBack] = useState(false);
 
-    const playAudio = (item) => {
-        let audio = new Audio(`/assets/sounds/${item}.wav`)
-        // let audio = new Audio('https://drive.google.com/file/d/1vDgM6Ps45Ppr5-1eS5pFYMYrCRtZJHf_/view?usp=drive_link');
-        // audio.crossOrigin = "anonymous";
-        audio.play()
-        console.log(`/assets/sounds/${item}.wav`, audio);
-    }
+    // const playAudio = (item) => {
+    //     let audio = new Audio(`/assets/sounds/${item.category}/${item.audio}`)
+    //     audio.play()
+    //     console.log(`/assets/sounds/${item.category}/${item.audio}`, audio);
+    // }
 
-    const filteredVocab = vocab.filter(obj => obj.category.includes(category)).map(obj => ({"cree":obj.cree, "english":obj.english}));
+    const filteredVocab = vocab.filter(obj => obj.category.includes(category)).map(obj => ({"audio":obj.audio, "category":obj.category, "cree":obj.cree, "english":obj.english}));
 
     let element = filteredVocab.map(function(object) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
         return (
             <div className='vocab-item'>
-                <img className = 'vocab-item-image' src={`/assets/flashcards/${object.english}.jpg`} onClick={(e) => playAudio(`${object.english}`)}></img>
+                {/* <img className = 'vocab-item-image' src={`/assets/flashcards/${object.english}.jpg`} onClick={(e) => playAudio(object)}></img> */}
+                <img className = 'vocab-item-image' src={`/assets/flashcards/placeholder.jpg`} onClick={(e) => playAudio(object)}></img>
 
                 <div className='text-audio'>
                     <div className="vocab-item-text">
@@ -102,7 +101,7 @@ const Vocabulary = ({ category }) => {
                         
                     </div>
                     <div className='vocab-item-audio'>
-                        <FontAwesomeIcon className="faPlayCircle" icon={faPlayCircle} size='xl' onClick={(e) => playAudio(`${object.english}`)}/>
+                        <FontAwesomeIcon className="faPlayCircle" icon={faPlayCircle} size='xl' onClick={(e) => playAudio(object)}/>
                     </div>
                 </div>
                 {/* <button onClick={(e) => playAudio(`${object.english}`)}>{ object.english }</button> */}

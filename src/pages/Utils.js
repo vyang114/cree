@@ -1,4 +1,4 @@
-import { faCarrot, faCircleDollarToSlot, faClock, faComments, faHandshake, faHome, faIceCream, faPaw, faPersonRunning, faTrain } from '@fortawesome/free-solid-svg-icons'
+import { fa1, faCarrot, faCircleDollarToSlot, faClock, faComments, faHandshake, faHome, faIceCream, faPaw, faPersonRunning, faTrain } from '@fortawesome/free-solid-svg-icons'
 
 export const categories = [
     {
@@ -14,8 +14,8 @@ export const categories = [
         icon: faComments,
     },
     {
-        category: "Fruits & Vegetables",
-        icon: faCarrot,
+        category: "Numbers",
+        icon: fa1,
     },
     {
         category: "Food",
@@ -34,8 +34,7 @@ export const categories = [
         icon: faPaw,
     },
     {
-        category: "Time",
-        icon: faClock,
+        category: "Time",icon: faClock,
     },
     // {
     //     category: "Time",
@@ -56,118 +55,118 @@ export const vocab = [
         audio: "apple.wav",
         english: "apple",
         cree: "kaspimin",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "apples.wav",
         english: "apples",
         cree: "kaspimina",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "orange.wav",  
         english: "orange",
         cree: "osawimin",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "oranges.wav",  
         english: "oranges",
         cree: "osawimina",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "watermelon.wav",  
         english: "watermelon",
         cree: "nipiwimin",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "watermelons.wav",  
         english: "watermelons",
         cree: "nipiwimina",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "pear.wav",  
         english: "pear",
         cree: "cipomin",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "pears.wav",  
         english: "pears",
         cree: "cipomina",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "peach.wav",  
         english: "peach",
         cree: "mithawimin",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "peaches.wav",  
         english: "peaches",
         cree: "mithawimina",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "carrot.wav",  
         english: "carrot",
         cree: "oskatask",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "carrots.wav",  
         english: "carrots",
         cree: "oskataskwa",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "onion.wav",  
         english: "onion",
         cree: "wihcikaskosiy",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "onions.wav",  
         english: "onions",
         cree: "wihcikaskosiya",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "potato.wav",  
         english: "potato",
         cree: "askipwa",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "potatoes.wav",  
         english: "potatoes",
         cree: "askipwawa",
-        category: "Fruits & Vegetables",
+        category: "Food",
         
     },
     {
         audio: "bread.wav",  
         english: "bread",
-        cree: "pahkwísikan",
+        cree: "ohpihkasikan",
         category: "Food",
         
     },
@@ -274,111 +273,225 @@ export const vocab = [
         english: "morning",
         cree: "kikisipayaw",
         category: "Time",
-        
     },
     {
         audio: "in the morning.wav",  
         english: "in the morning",
         cree: "kíkisipayaki",
         category: "Time",
-        
     },
     {
         audio: "night.wav",  
         english: "night",
         cree: "tipiskaw",
         category: "Time",
-        
     },
     {
         audio: "tonight.wav",  
         english: "tonight",
         cree: "tipisikaki",
         category: "Time",
-        
     },
     {
         audio: "last evening.wav",  
         english: "last evening",
         cree: "otakosihk",
         category: "Time",
-        
     },
     {
         audio: "last night.wav",  
         english: "last night",
         cree: "tipiskohk",
         category: "Time",
-        
     },
     {
         audio: "later tonight.wav",  
         english: "later tonight",
         cree: "otakosiki",
         category: "Time",
-        
     },
     {
         audio: "tomorrow.wav",  
         english: "tomorrow",
         cree: "wapahki",
         category: "Time",
-        
     },
     {
         audio: "tomorrow morning.wav",  
         english: "tomorrow morning",
         cree: "wapahki kikisípayaki",
         category: "Time",
-        
     },
     {
         audio: "day after tomorrow.wav",  
         english: "day after tomorrow",
         cree: "awasiwahpahki",
         category: "Time",
-        
     },
     {
         audio: "noon.wav",  
         english: "noon",
         cree: "apihtáwi kisikaw",
         category: "Time",
-        
     },
     {
         audio: "at noon.wav",  
         english: "at noon",
         cree: "apihtaaw wikisikaawki",
         category: "Time",
-        
     },
     {
         audio: "midnight.wav",  
         english: "midnight",
         cree: "apihtatipiskaw",
         category: "Time",
-        
     },
     {
         audio: "at midnight.wav",  
         english: "at midnight",
         cree: "apihtatipiskaki",
         category: "Time",
-        
     },
     {
         audio: "past midnight.wav",  
         english: "past midnight",
-        cree: "poni Apihtatipiskaaw",
+        cree: "poni apihtatipiskaaw",
         category: "Time",
-        
     },
     {
         audio: "after midnight.wav",  
         english: "after midnight",
-        cree: "poni Apihtatipiskaaki",
+        cree: "poni apihtatipiskaaki",
         category: "Time",
-        
+    },
+    {
+        audio: "hello.wav",  
+        english: "hello",
+        cree: "tānisi",
+        category: "Greetings",
+    },
+    {
+        audio: "my name is.wav",  
+        english: "my name is ___",
+        cree: "___ nitisīthihkāson",
+        category: "Greetings",
+    },
+    {
+        audio: "goodbye.wav",  
+        english: "goodbye",
+        cree: "īkosi kawapamitin",
+        category: "Greetings",
+    },
+    {
+        audio: "thank you.wav",  
+        english: "thank you",
+        cree: "īkosani kinanaskomitin",
+        category: "Greetings",
+    },
+    {
+        audio: "you're welcome.wav",  
+        english: "you're welcome",
+        cree: "īkosi",
+        category: "Greetings",
+    },
+    {
+        audio: "yes1.wav",  
+        english: "yes",
+        cree: "īhī",
+        category: "Greetings",
+    },
+    {
+        audio: "yes2.wav",  
+        english: "yes",
+        cree: "tapwī",
+        category: "Greetings",
+    },
+    {
+        audio: "no.wav",  
+        english: "no",
+        cree: "namwāc",
+        category: "Greetings",
+    },
+    {
+        audio: "sorry.wav",  
+        english: "I'm sorry",
+        cree: "ni mitatin",
+        category: "Greetings",
+    },
+    {
+        audio: "please.wav",  
+        english: "please",
+        cree: "please in cree",
+        category: "Greetings",
+    },
+    {
+        audio: "wait.wav",  
+        english: "wait",
+        cree: "ciskwa",
+        category: "Greetings",
+    },
+    {
+        audio: "i eat.wav",  
+        english: "I eat",
+        cree: "I eat in cree",
+        category: "Action Verbs",
+    },
+    {
+        audio: "i will eat.wav",  
+        english: "I will eat",
+        cree: "I will eat in cree",
+        category: "Action Verbs",
+    },
+    {
+        audio: "i ate.wav",  
+        english: "I ate",
+        cree: "I ate in cree",
+        category: "Action Verbs",
+    },
+    {
+        audio: "i will go.wav",  
+        english: "I will go",
+        cree: "I will go in cree",
+        category: "Action Verbs",
+    },
+    {
+        audio: "i am going.wav",  
+        english: "I am going",
+        cree: "I am going in cree",
+        category: "Action Verbs",
+    },
+    {
+        audio: "i went.wav",  
+        english: "I went",
+        cree: "I went in cree",
+        category: "Action Verbs",
+    },
+    {
+        audio: "i need.wav",  
+        english: "I need",
+        cree: "I need in cree",
+        category: "Action Verbs",
     },
 ]
+
+export const playAudio = (item) => {
+    let audio = new Audio(`/assets/sounds/${item.category}/${item.audio}`)
+    var resp = audio.play()
+    if (resp!== undefined) {
+        resp.then(_ => {
+            // autoplay starts!
+        }).catch(error => {
+           //show error
+        });
+    }
+    // console.log(`/assets/sounds/${item.category}/${item.audio}`, audio);
+}
+
+export function shuffleArray(array){
+    let shuffled = array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value)
+    // console.log(shuffled);
+    return shuffled;
+}

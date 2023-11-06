@@ -1,24 +1,45 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Vocabulary from "./Vocabulary";
-import { categories } from "./Utils";
+import Learn from "./Learn";
+import { categories, vocab, shuffleArray } from "./Utils";
 import AudioRecorderComponent from '../AudioRecorder';
 
 import '../styles/category.css'
 
 const colours = ["#EDAA6C", "#ea7f3d", "#D83E27", "#7f605c", "#193963", "#1F6E8E", "#2C8B98", "#82A8A0", "#bda5b7", "#6a6a6a"]; // "#ad9a8a"
 
-const Category = () => {
+const LearnCategory = () => {
 
-    const [option, setOption] = useState("");
+    const dispatch = useDispatch();
+    const [selectedCategory, setSelectedCategory] = useState(false);
+
+    const category = useSelector((state) => state.category);
+    const filteredVocab = useSelector((state) => state.filteredVocab);
+    const shuffledDilteredVocab = useSelector((state) => state.shuffledDilteredVocab);
+    const indexNotPickedYet = useSelector((state) => state.indexNotPickedYet);
+    const isBoolean = useSelector((state) => state.isBoolean);
 
     const handleOption = (category) => {
-        setOption(category);
+        let filtered = vocab.filter(obj => obj.category.includes(category)).map(obj => ({"audio":obj.audio, "category":obj.category, "cree":obj.cree, "english":obj.english}));
+        setSelectedCategory(true);
+        console.log("UPDATE_CATEGORY", category)
+        dispatch({ type: 'BOOLEAN_FALSE', payload: false });
+        dispatch({ type: 'UPDATE_EXIT', payload: false });
+        dispatch({ type: 'UPDATE_CATEGORY', payload: category });
+        dispatch({ type: 'UPDATE_FILTERED_VOCAB', payload: filtered});
+        dispatch({ type: 'UPDATE_SHUFFLED_FILTERED_VOCAB', payload: shuffleArray(filtered)});
+        dispatch({ type: 'UPDATE_INDEX_NOT_PICKED', payload: Array.from(Array(filtered.length).keys())});
     };
+
+    // console.log("LearnCategory", filteredVocab, shuffledDilteredVocab, indexNotPickedYet)
 
     let element = categories.map(function(object, index) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
         return (
-            <button className='category-button' 
+            <button className='category-button'
+                    component={Link}
                     style={{ background: `${colours[index]}` }}
                     onClick={(e) => handleOption(`${object.category}`)}
             >
@@ -38,34 +59,41 @@ const Category = () => {
 
 	return (
         <div>
+        {
+            category ?
+            <Learn />
+            :
+            <div className="category-container">{element}</div>
+        }
+{/* 
       {(() => {
         if (option === "Food") {
           return (
-            <Vocabulary 
+            <Learn 
                 category = {option}
             /> 
           )
         } else if (option === "Greetings") {
           return (
-            <Vocabulary 
+            <Learn 
                 category = {option}
             /> 
           )
         } else if (option === "Action Verbs") {
             return (
-              <Vocabulary 
+              <Learn 
                   category = {option}
               /> 
             ) 
         } else if (option === "Time") {
             return (
-              <Vocabulary 
+              <Learn 
                   category = {option}
               /> 
             )
         } else if (option === "Money") {
             return (
-              <Vocabulary 
+              <Learn 
                   category = {option}
               /> 
         )
@@ -74,9 +102,9 @@ const Category = () => {
             <div className="category-container">{element}</div>
           )
         }
-      })()}
+      })()} */}
     </div>
 	);
 };
 
-export default Category;
+export default LearnCategory;
