@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import ProgressBar from "@ramonak/react-progress-bar";
 import { vocab, shuffleArray, playAudio } from '../pages/Utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +7,7 @@ import LearnCategory from '../pages/LearnCategory'
 
 import '../styles/MatchSoundToWord.css'
 
-const MatchSoundToWord = ( { item, randomIndex } ) => {
+const MatchSoundToWord = ( { item, randomIndex, onNextClick } ) => {
 
     const dispatch = useDispatch()
     const exit = useSelector((state) => state.exit);
@@ -16,7 +15,7 @@ const MatchSoundToWord = ( { item, randomIndex } ) => {
     const shuffledDilteredVocab = useSelector((state) => state.shuffledDilteredVocab);
     const indexNotPickedYet = useSelector((state) => state.indexNotPickedYet);
     const isBoolean = useSelector((state) => state.isBoolean);
-
+    
     const [selectedAnswer, setSelectedAnswer] = useState("");
     const [answeredCorrect, setAnsweredCorrect] = useState(false);
     const [answerChoices, setAnswerChoices] = useState(shuffledDilteredVocab.slice(0,3));
@@ -31,14 +30,13 @@ const MatchSoundToWord = ( { item, randomIndex } ) => {
         if(filteredVocab.length > 0){
             playAudio(item);
             // console.log("item", item)
+            let allItemsWithoutCurrent = shuffledDilteredVocab.filter((value, index) => randomIndex !== index);
+            let allItemsWithoutCurrentShuffled = shuffleArray(allItemsWithoutCurrent);
+            const incorrectAnswers = allItemsWithoutCurrentShuffled.slice(0, 2);
+            incorrectAnswers.push(item);
+            setAnswerChoices(shuffleArray(incorrectAnswers));
+            console.log("item", item, "randomIndex", randomIndex)
         }
-
-        let allItemsWithoutCurrent = shuffledDilteredVocab.filter((value, index) => randomIndex !== index);
-        let allItemsWithoutCurrentShuffled = shuffleArray(allItemsWithoutCurrent);
-        const incorrectAnswers = allItemsWithoutCurrentShuffled.slice(0, 2);
-        incorrectAnswers.push(item);
-        setAnswerChoices(shuffleArray(incorrectAnswers));
-        // console.log("item", item, "randomIndex", randomIndex)
         // console.log("shuffledDilteredVocab", shuffledDilteredVocab)
         // console.log("allItemsWithoutCurrent", allItemsWithoutCurrent)
         // console.log("answerChoices", answerChoices)
@@ -54,7 +52,9 @@ const MatchSoundToWord = ( { item, randomIndex } ) => {
     const handleGoBack = () => {
         dispatch({ type: 'BOOLEAN_FALSE', payload: false });
         dispatch({ type: 'UPDATE_EXIT', payload: true });
+        dispatch({ type: 'UPDATE_SHOW_MATCH_SOUND_TO_WORD', payload: true });
         dispatch({ type: 'UPDATE_CATEGORY', payload: "" });
+        dispatch({ type: 'UPDATE_RANDOM_INDEX', payload: 0 });
         dispatch({ type: 'UPDATE_FILTERED_VOCAB', payload: [] });
         dispatch({ type: 'UPDATE_SHUFFLED_FILTERED_VOCAB', payload: [] });
         dispatch({ type: 'UPDATE_INDEX_NOT_PICKED', payload: [] });
@@ -62,12 +62,12 @@ const MatchSoundToWord = ( { item, randomIndex } ) => {
 
     const handleNext = () => {
         if(answeredCorrect){
-            dispatch({ type: 'BOOLEAN_FALSE', payload: true });
-            console.log("correct");
+            onNextClick();
         }else{
             console.log("incorrect");
         }
-        console.log("indexNotPickedYet", indexNotPickedYet)
+        // console.log("shuffledDilteredVocab", shuffledDilteredVocab)
+        // console.log("indexNotPickedYet", indexNotPickedYet)
         setSelectedAnswer("");
         setAnsweredCorrect(false);
         console.log((filteredVocab.length - indexNotPickedYet.length) / filteredVocab.length)
@@ -80,7 +80,6 @@ const MatchSoundToWord = ( { item, randomIndex } ) => {
             ? <LearnCategory /> 
             : 
             <div>
-                <ProgressBar completed = {((filteredVocab.length - indexNotPickedYet.length) / filteredVocab.length)*100} bgColor = "#80bd80" isLabelVisible = {false} />
                 <button type="button" className='btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button>
                 <div className='matchSound-container'>
                 
@@ -117,7 +116,7 @@ const MatchSoundToWord = ( { item, randomIndex } ) => {
                     <button className='btn primary' onClick={handleNext} disabled={selectedAnswer === ""}>Next</button>
                 </div>
             </div>
-        }
+            }
         </div>
 	);
 };
