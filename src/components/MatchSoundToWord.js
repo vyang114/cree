@@ -10,11 +10,11 @@ import '../styles/MatchSoundToWord.css'
 const MatchSoundToWord = ( { item, randomIndex, onNextClick } ) => {
 
     const dispatch = useDispatch()
-    const exit = useSelector((state) => state.exit);
-    const filteredVocab = useSelector((state) => state.filteredVocab);
-    const shuffledDilteredVocab = useSelector((state) => state.shuffledDilteredVocab);
-    const indexNotPickedYet = useSelector((state) => state.indexNotPickedYet);
-    const isBoolean = useSelector((state) => state.isBoolean);
+    const exit = useSelector((state) => state.appReducer.exit);
+    const filteredVocab = useSelector((state) => state.appReducer.filteredVocab);
+    const shuffledDilteredVocab = useSelector((state) => state.appReducer.shuffledDilteredVocab);
+    const indexNotPickedYet = useSelector((state) => state.appReducer.indexNotPickedYet);
+    const isBoolean = useSelector((state) => state.appReducer.isBoolean);
     
     const [selectedAnswer, setSelectedAnswer] = useState("");
     const [answeredCorrect, setAnsweredCorrect] = useState(false);

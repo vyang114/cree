@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import LanguageSelector from './LanguageSelector';
 import Progress from './Progress';
 import Home from './pages/Home';
+import PythonAPI from './pages/PythonAPI';
 import Header from "./pages/Header";
 import NavBar from "./pages/NavBar";
 import Learn from './pages/Learn';
+import LearnSentenceCategory from './pages/LearnSentenceCategory';
 import LearnCategory from './pages/LearnCategory'
 import Game from './GameIndex';
 import Category from './pages/Category';
@@ -105,10 +107,8 @@ function App() {
       <Routes>
       <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />
-          <Route path="learn" element={<LearnCategory />}>
-            <Route path="food" element={<Learn />} />
-          </Route>
-          
+          <Route path="learn" element={<LearnCategory />} />
+          <Route path="sentences" element={<LearnSentenceCategory />} />
           <Route path="game" element={<Game />} />
           <Route path="category" element={<Category />} />
           {/* <Route path="vocabulary" element={<Vocabulary />} /> */}

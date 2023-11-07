@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from "react-router-dom";
-import AudioRecorderComponent from '../AudioRecorder';
+import AudioRecorderComponent from './AudioRecorder';
 
 const Home = () => {
 	return (

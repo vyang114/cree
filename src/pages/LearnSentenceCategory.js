@@ -4,23 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Vocabulary from "./Vocabulary";
 import Learn from "./Learn";
-import { categories, vocab, shuffleArray } from "./Utils";
+import { categories, sentenceCategories, vocab, shuffleArray } from "./Utils";
 import AudioRecorderComponent from './AudioRecorder';
 
 import '../styles/category.css'
 
-const colours = ["#EDAA6C", "#ea7f3d", "#D83E27", "#7f605c", "#193963", "#1F6E8E", "#2C8B98", "#82A8A0", "#514c82", "#773d8c", "#6a6a6a"]; // "#ad9a8a"
+const colours = ["#EDAA6C", "#ea7f3d", "#D83E27", "#7f605c", "#193963", "#1F6E8E", "#2C8B98", "#82A8A0", "#bda5b7", "#6a6a6a"]; // "#ad9a8a"
 
-const LearnCategory = () => {
+const LearnSentenceCategory = () => {
 
     const dispatch = useDispatch();
     const [selectedCategory, setSelectedCategory] = useState(false);
 
-    const category = useSelector((state) => state.appReducer.category);
-    const filteredVocab = useSelector((state) => state.appReducer.filteredVocab);
-    const shuffledDilteredVocab = useSelector((state) => state.appReducer.shuffledDilteredVocab);
-    const indexNotPickedYet = useSelector((state) => state.appReducer.indexNotPickedYet);
-    const isBoolean = useSelector((state) => state.appReducer.isBoolean);
+    const sentenceReducer = useSelector((state) => state.sentenceReducer);
+
+    const filteredVocab = useSelector((state) => state.filteredVocab);
+    const shuffledDilteredVocab = useSelector((state) => state.shuffledDilteredVocab);
+    const indexNotPickedYet = useSelector((state) => state.indexNotPickedYet);
+    const isBoolean = useSelector((state) => state.isBoolean);
 
     const handleOption = (category) => {
         let filtered = vocab.filter(obj => obj.category.includes(category)).map(obj => ({"audio":obj.audio, "category":obj.category, "cree":obj.cree, "english":obj.english}));
@@ -28,7 +29,7 @@ const LearnCategory = () => {
         console.log("UPDATE_CATEGORY", category)
         dispatch({ type: 'BOOLEAN_FALSE', payload: false });
         dispatch({ type: 'UPDATE_EXIT', payload: false });
-        dispatch({ type: 'UPDATE_CATEGORY', payload: category });
+        dispatch({ type: 'UPDATE_SENTENCE_CATEGORY', payload: category });
         dispatch({ type: 'UPDATE_FILTERED_VOCAB', payload: filtered});
         dispatch({ type: 'UPDATE_SHUFFLED_FILTERED_VOCAB', payload: shuffleArray(filtered)});
         dispatch({ type: 'UPDATE_INDEX_NOT_PICKED', payload: Array.from(Array(filtered.length).keys())});
@@ -36,7 +37,7 @@ const LearnCategory = () => {
 
     // console.log("LearnCategory", filteredVocab, shuffledDilteredVocab, indexNotPickedYet)
 
-    let element = categories.map(function(object, index) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
+    let element = sentenceCategories.map(function(object, index) { // for each element in the Roles array, display it https://stackoverflow.com/questions/37997893/promise-error-objects-are-not-valid-as-a-react-child
         return (
             <button className='category-button'
                     component={Link}
@@ -57,10 +58,12 @@ const LearnCategory = () => {
         );
       })
 
+      console.log("element", element)
+
 	return (
         <div>
         {
-            category ?
+            sentenceReducer.sentenceCategory ?
             <Learn />
             :
             <div className="category-container">{element}</div>
@@ -107,4 +110,4 @@ const LearnCategory = () => {
 	);
 };
 
-export default LearnCategory;
+export default LearnSentenceCategory;

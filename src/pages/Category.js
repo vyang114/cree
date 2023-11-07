@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Vocabulary from "./Vocabulary";
 import { categories } from "./Utils";
-import AudioRecorderComponent from '../AudioRecorder';
+import AudioRecorderComponent from './AudioRecorder';
 
 import '../styles/category.css'
 
-const colours = ["#EDAA6C", "#ea7f3d", "#D83E27", "#7f605c", "#193963", "#1F6E8E", "#2C8B98", "#82A8A0", "#bda5b7", "#6a6a6a"]; // "#ad9a8a"
+const colours = ["#EDAA6C", "#ea7f3d", "#D83E27", "#7f605c", "#193963", "#1F6E8E", "#2C8B98", "#82A8A0", "#514c82", "#773d8c", "#6a6a6a"];
 
 const Category = () => {
 

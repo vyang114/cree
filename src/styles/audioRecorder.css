@@ -1,0 +1,63 @@
+/* select,
+textarea,
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-family: inherit;
+  color: #fff;
+  background-color: #213547;
+  transition: border-color 0.25s;
+}
+
+select:hover,
+textarea:hover,
+button:not([disabled]):hover {
+    background-color: #3a5d7d;
+    border-color: #3a5d7d;
+} */
+
+.category-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 70px;
+}
+
+.audio-button{
+    /* max-width: 230px; */
+    width: 180px;
+    height: 180px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    /* border-radius: 10px; */
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px 10px 10px 10px;
+    background: #f1f1f1;
+    border: 1px solid transparent;
+    align-items: center;
+    transition: border-color 0.25s;
+}
+
+.category-button:hover {
+    background-color: #efefef !important;
+    transition: 0.35s;
+}
+
+.category-item-text{
+    padding: 15px;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+.category-item-icon{
+    padding: 20px;
+}
+
+.faPlayCircle:hover {
+    color: #5585b0;
+}
+

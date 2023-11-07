@@ -4,6 +4,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { shuffleArray, vocab } from './Utils';
 import ShowItem from '../components/ShowItem';
 import MatchSoundToWord from '../components/MatchSoundToWord'
+import SpellWord from '../components/SpellWord';
 import appReducer from '../components/reducers';
 
 import '../styles/lesson.css'
@@ -11,13 +12,12 @@ import '../styles/lesson.css'
 const Learn = () => {
 
     const dispatch = useDispatch()
-    const isBoolean = useSelector((state) => state.isBoolean);
-    const showMatchSoundToWord = useSelector((state) => state.showMatchSoundToWord);
-    const category = useSelector((state) => state.category);
-    const filteredVocab = useSelector((state) => state.filteredVocab);
-    const shuffledDilteredVocab = useSelector((state) => state.shuffledDilteredVocab);
-    const indexNotPickedYet = useSelector((state) => state.indexNotPickedYet);
-    // console.log("shuffledDilteredVocab", shuffledDilteredVocab)
+    const isBoolean = useSelector((state) => state.appReducer.isBoolean);
+    const showMatchSoundToWord = useSelector((state) => state.appReducer.showMatchSoundToWord);
+    const category = useSelector((state) => state.appReducer.category);
+    const filteredVocab = useSelector((state) => state.appReducer.filteredVocab);
+    const shuffledDilteredVocab = useSelector((state) => state.appReducer.shuffledDilteredVocab);
+    const indexNotPickedYet = useSelector((state) => state.appReducer.indexNotPickedYet);
     
     const [randomIndex, setRandomIndex] = useState(0);
     const [item, setItem] = useState(shuffledDilteredVocab[randomIndex]);
@@ -64,17 +64,13 @@ const Learn = () => {
 
 	return (
 		<div>
+            {/* <SpellWord /> */}
             <ProgressBar completed = {((filteredVocab.length - indexNotPickedYet.length) / filteredVocab.length)*100} bgColor = "#80bd80" isLabelVisible = {false} />
             {showMatchSoundToWord ? (
                 <MatchSoundToWord item={item} randomIndex={randomIndex} onNextClick={handleNextClick} />
             ) : (
                 <ShowItem item={item} onNextClick={handleNextClick} />
             )}
-			{/* <MatchSoundToWord 
-                item = {shuffledDilteredVocab[randomIndex]}
-                randomIndex={randomIndex}
-            />  */}
-            {/* <button className='btn primary' onClick={pickRandomItem}>Next</button> */}
 		</div>
 	);
 };
