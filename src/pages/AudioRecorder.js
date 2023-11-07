@@ -97,7 +97,7 @@ export default function AudioRecorder(onRecordingComplete) {
     const handleInference = async ( formData ) => {
 
       try {
-        const response = await axios.post('http://127.0.0.1:8001/inference', formData, {
+        const response = await axios.post('http://127.0.0.1:8000/inference', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
