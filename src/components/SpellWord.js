@@ -1,57 +1,86 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/spellWord.css';
+import { vocab, playAudio, shuffleArray } from '../pages/Utils'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import ProgressBar from "@ramonak/react-progress-bar";
 
-const words = ['apple', 'banana', 'cherry', 'grape', 'kiwi', 'orange', 'pear', 'strawberry', 'watermelon'];
+import '../styles/spellWord.css'
 
 function SpellWord() {
-  const [currentWord, setCurrentWord] = useState('');
-  const [scrambledLetters, setScrambledLetters] = useState('');
-  const [userInput, setUserInput] = useState('');
-  const [message, setMessage] = useState('');
+  
+
+  const wordToSpell = vocab[0].creeSyllables;
+  const [userSelection, setUserSelection] = useState('');
+  const [selectedSyllables, setSelectedSyllables] = useState([]);
+  const [shuffledSyllables, setShuffledSyllables] = useState(shuffleArray(wordToSpell));
+  const isWordSpelled = userSelection === wordToSpell;
+
+//   const handleLetterClick = (letter) => {
+//     setUserSelection(userSelection + letter);
+//   };
+
+ const handleLetterClick = (letter) => {
+    setSelectedSyllables(oldArray => [...oldArray, letter]);
+    // let newSelectedList = new Array();
+    // newSelectedList = selectedSyllables;
+    // newSelectedList.push(letter)
+    // console.log("newSelectedList", newSelectedList, newSelectedList.join());
+    // setSelectedSyllables(newSelectedList);
+    // setUserSelection(newSelectedList.join());
+  };
+
+  const handleUndo = () => {
+    // if (userSelection.length > 0) {
+    //   setUserSelection(userSelection.slice(0, -1));
+    // }
+    if (selectedSyllables.length > 0) {
+        setSelectedSyllables((previousArr) => (previousArr.slice(0, -1)));
+        // setUserSelection(newSelectedList.pop());
+      }
+  };
+
+  const renderLetterButtons = () => {
+    return shuffledSyllables.map((letter, index) => (
+      <button className='btn primary' key={index} onClick={() => handleLetterClick(letter)} disabled={isWordSpelled}>
+        {letter}
+      </button>
+    ));
+  };
 
   useEffect(() => {
-    getRandomWord();
-  }, []);
-
-  const getRandomWord = () => {
-    const randomIndex = Math.floor(Math.random() * words.length);
-    const word = words[randomIndex];
-    setCurrentWord(word);
-    setScrambledLetters(shuffleWord(word));
-  };
-
-  const shuffleWord = (word) => {
-    const wordArray = word.split('');
-    for (let i = wordArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
-    }
-    return wordArray.join('');
-  };
-
-  const handleInputChange = (e) => {
-    setUserInput(e.target.value);
-  };
-
-  const checkSpelling = () => {
-    if (userInput.toLowerCase() === currentWord) {
-      setMessage('Correct!');
-    } else {
-      setMessage('Incorrect. Try again.');
-    }
-  };
+    console.log(userSelection)
+  })
 
   return (
-    <div className="spell-word">
-      <h1>Spelling Game</h1>
-      <p>Unscramble the letters to spell the word:</p>
-      <div className="word-container">
-        <p className="scrambled-word">{scrambledLetters}</p>
-        <input type="text" value={userInput} onChange={handleInputChange} />
-        <button onClick={checkSpelling}>Check</button>
+    <div>
+
+  <ProgressBar completed = {60} bgColor = "#80bd80" isLabelVisible = {false} />
+    <div className='header'>
+      <button type="button" className='exit-button btn shadow-none' ><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+      <div className='title'>Spell the item</div>
+    </div>
+    
+    
+    <div className="spell-container">
+      <div className='spell-item'>
+
+        <img className='img' src={`/assets/flashcards/apple.jpg`}></img>
+        
+        <div className='input-area'>
+          <div className='input'>{selectedSyllables.join("")}</div>
+        </div>
+
+        <div className="word-button-wrap">
+          {renderLetterButtons()}
+        </div>
+        <div className='next-container'>
+          <button className='btn primary' onClick={handleUndo} disabled={isWordSpelled}>Undo</button>
+          <button className='btn primary' disabled={selectedSyllables.length === 0}>Enter</button>
+        </div>
       </div>
-      <p className="message">{message}</p>
-      <button onClick={getRandomWord}>Next Word</button>
+  
+      {isWordSpelled && <p>Word spelled correctly: {wordToSpell}</p>}
+    </div>
     </div>
   );
 }

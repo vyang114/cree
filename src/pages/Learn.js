@@ -7,7 +7,7 @@ import MatchSoundToWord from '../components/MatchSoundToWord'
 import SpellWord from '../components/SpellWord';
 import appReducer from '../components/reducers';
 
-import '../styles/lesson.css'
+import '../styles/showItem.css'
 
 const Learn = () => {
 

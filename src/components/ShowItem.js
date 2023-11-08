@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { playAudio, shuffleArray, vocab } from '../pages/Utils';
 import LearnCategory from '../pages/LearnCategory'
 
-import '../styles/lesson.css'
+import '../styles/showItem.css'
 
 const ShowItem = ( { item, onNextClick } ) => {
 
@@ -36,7 +36,10 @@ const ShowItem = ( { item, onNextClick } ) => {
             exit ? <LearnCategory /> 
             :
             <div>
-              <button type="button" className='btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+              <div className='header'>
+                <button type="button" className='exit-button btn shadow-none' ><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+                <div className='title'></div>
+              </div>
               <div className='showItem-container'>
                 <div className='showItem-item'>
                     <img src={`/assets/flashcards/${item.english}.jpg`}></img>

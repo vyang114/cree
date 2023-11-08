@@ -10,6 +10,7 @@ import NavBar from "./pages/NavBar";
 import Learn from './pages/Learn';
 import LearnSentenceCategory from './pages/LearnSentenceCategory';
 import LearnCategory from './pages/LearnCategory'
+import SpellWord from './components/SpellWord'
 import Game from './GameIndex';
 import Category from './pages/Category';
 import Vocabulary from './pages/Vocabulary';
@@ -108,7 +109,7 @@ function App() {
       <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />
           <Route path="learn" element={<LearnCategory />} />
-          <Route path="sentences" element={<LearnSentenceCategory />} />
+          <Route path="sentences" element={<SpellWord />} />
           <Route path="game" element={<Game />} />
           <Route path="category" element={<Category />} />
           {/* <Route path="vocabulary" element={<Vocabulary />} /> */}

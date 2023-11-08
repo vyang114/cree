@@ -53,6 +53,27 @@
     vertical-align: top;
 }
 
+.exit-button {
+  position: absolute;
+  left: 0cm;
+}
+
+.title {
+  color:black
+}
+
+.header {
+  font-family: 'Roboto', 'Arial', 'sans-serif', 'Arial Narrow';
+  font-size: 26px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  height: 40px;
+  margin-top: 10px;
+}
+
 .img {
     max-width: 300px;
     margin-bottom: 10%;

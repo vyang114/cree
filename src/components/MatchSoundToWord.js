@@ -80,7 +80,12 @@ const MatchSoundToWord = ( { item, randomIndex, onNextClick } ) => {
             ? <LearnCategory /> 
             : 
             <div>
-                <button type="button" className='btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+                <div className='header'>
+                  <button type="button" className='exit-button btn shadow-none' ><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+                    <div className='title'>Choose the correct word</div>
+                </div>
+    
+                {/* <button type="button" className='btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button> */}
                 <div className='matchSound-container'>
                 
                     <div className='matchSound-item'>
