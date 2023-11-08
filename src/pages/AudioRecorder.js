@@ -22,14 +22,6 @@ function getMimeType() {
     return undefined;
 }
 
-const client = new S3Client({
-    credentials: {
-        accessKeyId: "AKIATELQNZIIDWI5KOZY",
-        secretAccessKey: "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"
-    },
-    region: "ca-central-1"
-});
-
 export default function AudioRecorder(onRecordingComplete) {
     const [recording, setRecording] = useState(false);
     const [duration, setDuration] = useState(0);
@@ -110,20 +102,20 @@ export default function AudioRecorder(onRecordingComplete) {
         }
     };
 
-    const uploadFilesToS3 = async(extension,path,file,fileName) => {
-        const command = new PutObjectCommand({
-            Bucket: "cree-audio",
-            Key: fileName,
-            Body: file,
-          });
+    // const uploadFilesToS3 = async(extension,path,file,fileName) => {
+    //     const command = new PutObjectCommand({
+    //         Bucket: "cree-audio",
+    //         Key: fileName,
+    //         Body: file,
+    //       });
 
-          try {
-            const response = await client.send(command);
-            console.log(response);
-          } catch (err) {
-            console.error(err);
-          }
-      }
+    //       try {
+    //         const response = await client.send(command);
+    //         console.log(response);
+    //       } catch (err) {
+    //         console.error(err);
+    //       }
+    //   }
 
     const handleInference = async ( formData ) => {
         
