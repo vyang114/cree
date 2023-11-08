@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { webmFixDuration } from "./BlobFix";
 import axios from 'axios';
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
 
 import '../styles/audioRecorder.css'
 
@@ -19,6 +21,14 @@ function getMimeType() {
     }
     return undefined;
 }
+
+const client = new S3Client({
+    credentials: {
+        accessKeyId: "AKIATELQNZIIDWI5KOZY",
+        secretAccessKey: "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"
+    },
+    region: "ca-central-1"
+});
 
 export default function AudioRecorder(onRecordingComplete) {
     const [recording, setRecording] = useState(false);
@@ -81,6 +91,12 @@ export default function AudioRecorder(onRecordingComplete) {
                     // for (var key of formData.entries()) {
                     //   console.log(key[0] + ', ' + key[1]);
                     // }
+
+                    // const blobUrl = URL.createObjectURL(blob)
+                    // let file = new File([blob], 'browser.wav', { type: 'audio/wav',    lastModified: Date.now() })
+                    // console.log(file)
+                    // await uploadFilesToS3('wav','/',file,'browser.wav')
+                    // console.log("after upload")
                     
                     handleInference(formData);
 
@@ -94,18 +110,58 @@ export default function AudioRecorder(onRecordingComplete) {
         }
     };
 
-    const handleInference = async ( formData ) => {
+    const uploadFilesToS3 = async(extension,path,file,fileName) => {
+        const command = new PutObjectCommand({
+            Bucket: "cree-audio",
+            Key: fileName,
+            Body: file,
+          });
 
+          try {
+            const response = await client.send(command);
+            console.log(response);
+          } catch (err) {
+            console.error(err);
+          }
+      }
+
+    const handleInference = async ( formData ) => {
+        
       try {
         const response = await axios.post('http://127.0.0.1:8000/inference', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
-        setOutput(response.data.result);
-      } catch (error) {
+        const obj = JSON.parse(response.data.body);
+        console.log(obj.result)
+        setOutput(obj.result);
+    //     // setOutput(response.data.result);
+    } catch (error) {
         console.error('Error performing inference:', error);
-      }
+    }
+    
+    // try {
+    //     const response = await axios.get('http://127.0.0.1:8000/inference?audio_file=onion.wav', {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     });
+    //   } catch (error) {
+    //     console.error('Error performing inference:', error);
+    //   }
+    
+    // const response = await fetch("https://t7sdin3c04.execute-api.ca-central-1.amazonaws.com/dev", {
+    //     method: 'GET',
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     //   'Content-Type': 'multipart/form-data',
+    //     },
+    //     redirect: 'follow'
+    //   });
+    //     const obj = JSON.parse(response.data.result);
+        // console.log(response.result)
+        // setOutput(response.data.body);
     };
 
     const stopRecording = () => {
