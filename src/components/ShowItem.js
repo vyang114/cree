@@ -37,7 +37,7 @@ const ShowItem = ( { item, onNextClick } ) => {
             :
             <div>
               <div className='header'>
-              <button type="button" className='exit-button btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+                <button type="button" className='exit-button btn shadow-none' ><FontAwesomeIcon icon={faXmark} size='xl'/></button>
                 <div className='title'></div>
               </div>
               <div className='showItem-container'>

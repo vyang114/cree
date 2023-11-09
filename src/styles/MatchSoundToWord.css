@@ -53,16 +53,13 @@
     vertical-align: top;
 }
 
-.title {
-  color:black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.exit-button {
+  position: absolute;
+  left: 0cm;
 }
 
-.exit-button {
-  position: flex;
-  float: left
+.title {
+  color:black
 }
 
 .header {
@@ -112,10 +109,6 @@ input[type="radio"]:checked + label {
     background: #80bd80;
     color: white;
     box-shadow: 0px 0px 20px #80bd80;
-}
-
-.text-in-button {
-  width: auto;
 }
   
 span {

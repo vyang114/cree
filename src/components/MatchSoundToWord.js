@@ -81,10 +81,11 @@ const MatchSoundToWord = ( { item, randomIndex, onNextClick } ) => {
             : 
             <div>
                 <div className='header'>
-                    <button type="button" className='exit-button btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button>
+                  <button type="button" className='exit-button btn shadow-none' ><FontAwesomeIcon icon={faXmark} size='xl'/></button>
                     <div className='title'>Choose the correct word</div>
                 </div>
-                
+    
+                {/* <button type="button" className='btn shadow-none' onClick={handleGoBack}><FontAwesomeIcon icon={faXmark} size='xl'/></button> */}
                 <div className='matchSound-container'>
                 
                     <div className='matchSound-item'>
@@ -97,19 +98,19 @@ const MatchSoundToWord = ( { item, randomIndex, onNextClick } ) => {
                                 <div className='soundToWord-button-label'>
                                     <input type="radio" id="control_01" name="select" value={answerChoices[0].cree} onChange={handleSelectAnswer} checked={(selectedAnswer == answerChoices[0].cree)}/>
                                     <label for="control_01">
-                                        <span className='text-in-button'>{answerChoices[0].cree}</span>
+                                        <span>{answerChoices[0].cree}</span>
                                     </label>
                                 </div>
                                 <div>
                                 <input type="radio" id="control_02" name="select" value={answerChoices[1].cree} onChange={handleSelectAnswer} checked={(selectedAnswer == answerChoices[1].cree)}/>
                                 <label for="control_02">
-                                    <span className='text-in-button'>{answerChoices[1].cree}</span>
+                                    <span>{answerChoices[1].cree}</span>
                                 </label>
                                 </div>
                                 <div>
                                 <input type="radio" id="control_03" name="select" value={answerChoices[2].cree} onChange={handleSelectAnswer} checked={(selectedAnswer == answerChoices[2].cree)}/>
                                 <label for="control_03">
-                                    <span className='text-in-button'>{answerChoices[2].cree}</span>
+                                    <span>{answerChoices[2].cree}</span>
                                 </label>
                                 </div>
                             </div>

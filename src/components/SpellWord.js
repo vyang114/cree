@@ -9,7 +9,7 @@ import '../styles/spellWord.css'
 function SpellWord() {
   
 
-  const wordToSpell = vocab[20].creeSyllables;
+  const wordToSpell = vocab[0].creeSyllables;
   const [userSelection, setUserSelection] = useState('');
   const [selectedSyllables, setSelectedSyllables] = useState([]);
   const [shuffledSyllables, setShuffledSyllables] = useState(shuffleArray(wordToSpell));
