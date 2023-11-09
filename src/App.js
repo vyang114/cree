@@ -111,7 +111,7 @@ function App() {
           <Route path="learn" element={<LearnCategory />} />
           <Route path="sentences" element={<SpellWord />} />
           <Route path="game" element={<Game />} />
-          <Route path="category" element={<Category />} />
+          <Route path="vocabulary" element={<Category />} />
           {/* <Route path="vocabulary" element={<Vocabulary />} /> */}
         </Route>
           
