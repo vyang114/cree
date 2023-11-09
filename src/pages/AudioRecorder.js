@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { webmFixDuration } from "./BlobFix";
 import axios from 'axios';
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+
+import { S3, PutObjectCommand, S3Client, ManagedUpload } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
+import { Buffer } from "buffer";
+import { toWav } from 'audiobuffer-to-wav';
 
 import '../styles/audioRecorder.css'
 
@@ -63,6 +66,28 @@ export default function AudioRecorder(onRecordingComplete) {
 
                     // Received a stop event
                     let blob = new Blob(chunksRef.current, { type: mimeType });
+                    
+                    const audioContext = new AudioContext();
+                    const fileReader = new FileReader();
+                    // Set up file reader on loaded end event
+                    fileReader.onloadend = () => {
+                        const arrayBuffer = fileReader.result; // as ArrayBuffer;
+                
+                        // Convert array buffer into audio buffer
+                        audioContext.decodeAudioData(arrayBuffer, (audioBuffer) => {
+                        // Do something with audioBuffer
+                        console.log(audioBuffer);
+                        var MP3Blob = audioBufferToWav(audioBuffer);
+                        // onStop(MP3Blob, audioBuffer);
+                        console.log(MP3Blob)
+                        uploadFilesToS3('wav','/', MP3Blob,'browser.wav')  // this should be await
+                        });
+                    };
+
+                    //Load blob
+                    fileReader.readAsArrayBuffer(blob);
+
+                    console.log('Blob:', blob);
 
                     if (mimeType === "audio/webm") {
                         blob = await webmFixDuration(blob, duration, blob.type);
@@ -70,13 +95,8 @@ export default function AudioRecorder(onRecordingComplete) {
 
                     setRecordedBlob(blob);
                     onRecordingComplete = blob;
-                    // console.log('Blob size:', blob.size);
 
                     const formData = new FormData();
-                    let audio = new Audio(`/assets/sounds/apple.wav`)
-                    
-                    // console.log("blob", blob)
-                    
                     // audio_file has to match with Python's /inference function
                     formData.append('audio_file', blob, "recording.webm");
                     
@@ -84,10 +104,6 @@ export default function AudioRecorder(onRecordingComplete) {
                     //   console.log(key[0] + ', ' + key[1]);
                     // }
 
-                    // const blobUrl = URL.createObjectURL(blob)
-                    // let file = new File([blob], 'browser.wav', { type: 'audio/wav',    lastModified: Date.now() })
-                    // console.log(file)
-                    // await uploadFilesToS3('wav','/',file,'browser.wav')
                     // console.log("after upload")
                     
                     handleInference(formData);
@@ -102,20 +118,98 @@ export default function AudioRecorder(onRecordingComplete) {
         }
     };
 
-    // const uploadFilesToS3 = async(extension,path,file,fileName) => {
-    //     const command = new PutObjectCommand({
-    //         Bucket: "cree-audio",
-    //         Key: fileName,
-    //         Body: file,
-    //       });
+    function audioBufferToWav(aBuffer) {
+        let numOfChan = aBuffer.numberOfChannels,
+          btwLength = aBuffer.length * numOfChan * 2 + 44,
+          btwArrBuff = new ArrayBuffer(btwLength),
+          btwView = new DataView(btwArrBuff),
+          btwChnls = [],
+          btwIndex,
+          btwSample,
+          btwOffset = 0,
+          btwPos = 0;
+        setUint32(0x46464952); // "RIFF"
+        setUint32(btwLength - 8); // file length - 8
+        setUint32(0x45564157); // "WAVE"
+        setUint32(0x20746d66); // "fmt " chunk
+        setUint32(16); // length = 16
+        setUint16(1); // PCM (uncompressed)
+        setUint16(numOfChan);
+        setUint32(aBuffer.sampleRate);
+        setUint32(aBuffer.sampleRate * 2 * numOfChan); // avg. bytes/sec
+        setUint16(numOfChan * 2); // block-align
+        setUint16(16); // 16-bit
+        setUint32(0x61746164); // "data" - chunk
+        setUint32(btwLength - btwPos - 4); // chunk length
+      
+        for (btwIndex = 0; btwIndex < aBuffer.numberOfChannels; btwIndex++)
+          btwChnls.push(aBuffer.getChannelData(btwIndex));
+      
+        while (btwPos < btwLength) {
+          for (btwIndex = 0; btwIndex < numOfChan; btwIndex++) {
+            // interleave btwChnls
+            btwSample = Math.max(-1, Math.min(1, btwChnls[btwIndex][btwOffset])); // clamp
+            btwSample =
+              (0.5 + btwSample < 0 ? btwSample * 32768 : btwSample * 32767) | 0; // scale to 16-bit signed int
+            btwView.setInt16(btwPos, btwSample, true); // write 16-bit sample
+            btwPos += 2;
+          }
+          btwOffset++; // next source sample
+        }
+      
+        return new Blob([btwArrBuff], { type: "audio/wav" });
+      
+        function setUint16(data) {
+          btwView.setUint16(btwPos, data, true);
+          btwPos += 2;
+        }
+      
+        function setUint32(data) {
+          btwView.setUint32(btwPos, data, true);
+          btwPos += 4;
+        }
+      }
 
-    //       try {
-    //         const response = await client.send(command);
-    //         console.log(response);
-    //       } catch (err) {
-    //         console.error(err);
-    //       }
-    //   }
+    const uploadFilesToS3 = async(extension,path,file,fileName) => {
+        var albumBucketName = "cree-audio";
+        var bucketRegion = "us-east-1";
+
+        const client = new S3Client(
+            {
+                region:'ca-central-1',
+                credentials:{
+                    accessKeyId:'',
+                    secretAccessKey:''
+                }
+            }
+        );
+
+        var command = new PutObjectCommand({
+              Bucket: albumBucketName,
+              Key: fileName,
+              Body: file
+          });
+        
+        const response = await client.send(command);
+        
+        (async () => {
+            const response = await client.send(command);
+            console.log("response", response);
+        })();
+        
+        // const command = new PutObjectCommand({
+        //     Bucket: "cree-audio",
+        //     Key: fileName,
+        //     Body: file,
+        //   });
+
+        //   try {
+        //     const response = await client.send(command);
+        //     console.log(response);
+        //   } catch (err) {
+        //     console.error(err);
+        //   }
+      }
 
     const handleInference = async ( formData ) => {
         

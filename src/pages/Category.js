@@ -39,36 +39,13 @@ const Category = () => {
 	return (
         <div>
       {(() => {
-        if (option === "Food") {
+        if (option === "Food" || option === "Greetings" || option === "Action Verbs" || option === "Buildings" 
+            || option === "Home" || option === "Transportation" || option === "Animals" || option === "Time") {
           return (
             <Vocabulary 
                 category = {option}
             /> 
           )
-        } else if (option === "Greetings") {
-          return (
-            <Vocabulary 
-                category = {option}
-            /> 
-          )
-        } else if (option === "Action Verbs") {
-            return (
-              <Vocabulary 
-                  category = {option}
-              /> 
-            ) 
-        } else if (option === "Time") {
-            return (
-              <Vocabulary 
-                  category = {option}
-              /> 
-            )
-        } else if (option === "Money") {
-            return (
-              <Vocabulary 
-                  category = {option}
-              /> 
-        )
         } else {
           return (
             <div className="category-container">{element}</div>

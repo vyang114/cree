@@ -43,8 +43,8 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink activeclassname="active" className="nav-link" to="/category" onClick={handleResetState}>
-              Category
+            <NavLink activeclassname="active" className="nav-link" to="/vocabulary" onClick={handleResetState}>
+              Vocabulary
             </NavLink>
           </li>
         </ul>
